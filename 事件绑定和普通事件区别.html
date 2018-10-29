@@ -1,0 +1,35 @@
+<!-- 事件绑定和普通事件区别.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">button</button>
+
+    <script type="text/javascript">
+
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+            alert('普通事件1');//不执行
+        }
+        btn.onclick = function () {
+            alert('普通事件2');//弹出
+        }
+
+//      上面用普通方法添加两个事件，下面用事件绑定添加两个事件。
+
+        btn.addEventListener('click', function  () {
+            alert('事件绑定1');//弹出
+        },false);
+        btn.addEventListener('click', function  () {
+            alert('事件绑定2');//弹出
+        },false);
+
+        //注意我这里只使用W3C的标准写法添加事件，没有兼容低版本的IE。
+    </script>
+</body>
+</html>

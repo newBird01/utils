@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>排序</title>
+</head>
+<body>
+	
+</body>
+<script>
+// 快速排序
+function oSort(arr){
+	 if(arr.length<=1){
+	            
+	 	return arr 
+	 }
+	 var left=[];
+	 var right=[];
+	 var oNum = Math.floor(arr.length/2);
+	 var oNumVode = arr.splice(oNum,1);
+	 for(var i=0;i<arr.length;i++){
+		  if(arr[i]<oNumVode){
+			 left.push(arr[i])
+		  }else{
+			right.push(arr[i])
+	  	  }
+
+	   }
+	 return oSort(left).concat([oNumVode],oSort(right))
+ }
+
+
+// 冒泡排序 
+var array = [5, 4, 3, 2, 1];
+var temp = 0;
+for (var i = 0; i < array.length; i++){
+	for (var j = 0; j < array.length - i; j++){
+		if (array[j] > array[j + 1]){
+			temp = array[j + 1];
+			array[j + 1] = array[j];
+			array[j] = temp;
+		}
+
+	}}
+	document.write(array)
+</script>
+</html>

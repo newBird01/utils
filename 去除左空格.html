@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript" src="jquery-1.11.0.js"></script>
+<script>
+$.extend({
+	leftTrim:function(str){
+		return str.replace(/^\s+/,'');
+	}
+})
+var str='    hello     ';
+console.log('有空格'+str);
+console.log('有空格'+$.leftTrim(str));
+
+</script>
+</html>

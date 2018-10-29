@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>去空格</title>
+</head>
+<body>
+	
+</body>
+<script>
+// 除字符串前后的空格。(兼容所有浏览器)
+	function trim(str) {
+	    if (str && typeof str === "string") {
+	        return str.replace(/(^\s*)|(\s*)$/g,""); //去除前后空白符
+	    }
+	}
+	var str="                12132132   4afd56 46d   646    "
+	console.log(trim(str))
+	console.log(str)
+</script>
+</html>

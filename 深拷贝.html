@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = {
+            name:'韦小宝',
+            wifes:[['公主1','双儿1','阿珂1'],['公主2','双儿2','阿珂2'],['公主3','双儿3','阿珂3']],
+            position:{
+                p1:{
+                    guanli:['上述','下属']
+                },
+                p2:{
+                    guanl2:['呵呵','哈哈']
+                }
+            },
+            getname(){
+                alert(this.name)
+            }
+        }    
+        var b  =JSON.parse(JSON.stringify(a))  //不能序列化方法
+        console.log(b,'bb')
+        a.position.p1.guanli.push('黄色')
+        console.log(a,'aaaa')
+        console.log(b,'bbbb')
+        function gettype(obj,typeme){
+            return Object.prototype.toString.call(obj).slice(8,-1) ===typeme
+        }
+        function deep (oldObj) {
+            var newObj = {}
+            for(var key in oldObj) {
+                newObj[key] = oldObj[key]
+                if(gettype(oldObj[key],'Object')) {
+                    deep(oldObj[key])
+                }
+            }
+            return newObj
+        }
+var c = deep(a)
+console.log(c,'ccccccccccc')
+    </script>
+</body>
+</html>

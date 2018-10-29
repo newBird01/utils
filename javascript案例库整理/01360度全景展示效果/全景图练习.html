@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<style>
+			html,body {height:100%;}
+			body {margin:0;}
+			img {width:640px; height:378px; position:absolute; left:50%; top:50%; margin-top:-189px; margin-left:-320px;}
+		</style>
+		<meta charset="utf-8" />
+		<title>360度全景展示</title>
+
+		<script>
+			window.onload = function(){
+				var cache = document.createDocumentFragment();//创建一块缓存
+				for(var i=1;i<=76;i++){
+					var Img = document.createElement("img");
+					Img.src = "img/"+i+".jpg";
+					Img.style.display="none";
+					cache.appendChild(Img);
+				}
+				document.body.appendChild(cache);
+				var index = 0;//记录位置
+				var startX = 0;//记录开始的位置；
+				document.onmousedown = function(evt){
+					var e = evt || event;
+					startX = e.clientX;
+					document.onmousemove = function(er){
+						var et = er || event;
+						var x= et.clientX;
+						var disx=x-startX;
+						if(disx>0){
+							Img.src="img/"+ index++ +".jpg";
+							Img.style.display = "block";
+							if(index==76){
+								index=0;
+							}
+						}else{
+							Img.src="img/"+ index-- +".jpg";
+							Img.style.display = "block";
+							if(index==0){
+								index=76;
+							}
+						}
+					}
+				}
+				document.onmouseup = function(){
+					document.onmousemove="";
+				}
+				
+			}
+		</script>
+	</head>
+
+	<body>
+		<div style="z-index: 100; opacity: 0.01; background: black; position: fixed; width: 100%; height: 100%;"></div>
+		<img id="img0" src="img/0.jpg" />
+	</body>
+
+</html>

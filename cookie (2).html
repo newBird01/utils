@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="jquery.cookie.js" ></script>
+	</head>
+	<body>
+		<span>请输入账户名</span><input id="user" type="text"  placeholder="账户名"/><br />
+		<span>请输入密码</span>	 <input  id="pass" type="password" placeholder="密码"/><br />
+		<input id="btn" type="button" value="登录"/>
+	</body>
+	<script>
+//		$(function(){
+//			if($.cookie('user')){
+//				$("#user").val($.cookie('user'));
+//			}
+//			if($.cookie('pass')){
+//				$("#pass").val($.cookie('pass'));
+//			}
+//			$("#btn").click(function(){
+//				var userName=$("#user").val();
+//				var passWord=$("#pass").val();
+//				if(!userName){
+//					alert("请输入用户名")
+//				}else if(!passWord){
+//					alert("请输入密码")
+//				}else{
+//					var cookies=confirm("是否保存密码");
+//					if(cookies){
+//						$.cookie('user',userName);
+//						$.cookie('pass',passWord);
+//					}
+//				}
+//			})
+//		})
+		
+		
+//		$(function(){
+//			if($.cookie('baocun')  )  {
+//				$("#user").val($.cookie('baocun').split('|')[0])
+//				$("#pass").val($.cookie('baocun').split('|')[1])
+//			}
+//			$("#btn").click(function(){
+//				var u=$("#user").val();
+//				var p=$("#pass").val();
+//				if(!u){
+//						alert("请输入用户名")
+//				}else if(!p){
+//						alert("请输入密码")
+//				}else{
+//						var cookies=confirm("是否保存密码");
+//						if(cookies){
+//							$.cookie('baocun',u+"|"+p,{
+//								expires:7
+//							});
+//						}
+//				};
+//			});
+//		})
+
+
+		$(function(){
+			var ming= localStorage.user ;
+			var mima =localStorage.pass;
+			if(  ming  ){
+				$("#user").val(ming);
+			}
+			if(mima){
+				$("#pass").val(mima);
+			}
+			$("#btn").click(function(){
+				var userName=$("#user").val();
+				var passWord=$("#pass").val();
+				if(!userName){
+					alert("请输入用户名")
+				}else if(!passWord){
+					alert("请输入密码")
+				}else{
+					var cookies=confirm("是否保存密码");
+					if(cookies){
+						localStorage.setItem('user',userName);
+						localStorage.setItem('pass',passWord);
+						alert(localStorage.user)
+						alert(localStorage.pass)
+					}
+				}
+			})
+		})
+
+
+	</script>
+</html>
