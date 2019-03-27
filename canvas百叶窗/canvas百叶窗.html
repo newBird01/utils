@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas百叶窗</title>
+    <style>
+        article{
+            align:center;
+        }
+        canvas{
+            background-color: white;
+
+        }
+        div#divLeft{
+            width: 150px;
+            float: left;
+        }
+        div#divRight{
+            float: right;
+        }
+        input[type='button']{
+            width: 140px;
+        }
+    </style>
+    <script>
+       function window_onload() {
+           var canvas = document.getElementById('canvas')
+           ctx = canvas.getContext('2d')
+           image = new Image()
+           image.src = './3.png'
+           width  = canvas.width
+           height = canvas.height
+       }
+       function btn1_onclick() {
+           ctx.fillStyle = '#eeeeff'
+           ctx.fillRect(0,0,width,height)
+            drawWidth = 0
+            functionId = self.setInterval('drawImg1()',100)
+            btnDisable()
+       }
+       function drawImg1() {
+           ctx.drawImage(image,0,0,drawWidth,image.height,0,0,drawWidth,image.height)
+           drawWidth =drawWidth+2
+           if(drawWidth>width) {
+               window.clearInterval(functionId)
+               btnEnable()
+           }
+       }
+       function btn2_onclick() {
+           ctx.fillStyle = '#eeeeff'
+           ctx.fillRect(0,0,width,height)
+           drawHeight = 0
+        functionId = self.setInterval('drawImg2()',100)
+        btnDisable()
+       }
+       function drawImg2() {
+           ctx.drawImage(image,0,0,image.width,drawHeight,0,0,image.widht,drawHeight)
+           drawHeight =drawHeight+2
+           if(drawHeight>height) {
+               window.clearInterval(functionId)
+               btnEnable()
+           }
+       }
+       function btn3_onclick() {
+           ctx.fillStyle = '#eeeeff'
+           ctx.fillRect(0,0,width,height)
+            drawLeft = 0
+            functionId = self.setInterval('drawImg3()',100)
+            btnDisable()
+       }
+       function drawImg3() {
+           ctx.drawImage(image,drawLeft,0,drawWidth,image.height,drawLeft,0,drawWidth,image.height)
+           drawLeft =drawLeft-1
+           drawWidth =drawWidth-1
+
+           if(drawLeft<=0) {
+               window.clearInterval(functionId)
+               btnEnable()
+           }
+       }
+       function btnDisable() {
+           document.getElementById('btn1').disabled = 'disabled'
+           document.getElementById('btn2').disabled = 'disabled'
+           document.getElementById('btn3').disabled = 'disabled'
+           document.getElementById('btn4').disabled = 'disabled'
+           document.getElementById('btn5').disabled = 'disabled'
+           document.getElementById('btn6').disabled = 'disabled'
+       }
+       function btnEnable() {
+           document.getElementById('btn1').disabled = ''
+           document.getElementById('btn2').disabled = ''
+           document.getElementById('btn3').disabled = ''
+           document.getElementById('btn4').disabled = ''
+           document.getElementById('btn5').disabled = ''
+           document.getElementById('btn6').disabled = ''
+       }
+    </script>
+</head>
+<body onload="window_onload()">
+    <article>
+        <h1>用动画的形式播放图片</h1>         
+        <div id="divLeft">
+            <input type="button" id='btn1' value="从左往右" onclick="btn1_onclick()">
+            <input type="button" id='btn2' value="从上往下"  onclick="btn2_onclick()">
+            <input type="button" id='btn3' value="横向窗帘拉开" onclick="btn3_onclick()">
+            <input type="button" id='btn4' value="竖向窗帘拉开">
+            <input type="button" id='btn5' value="横向百叶窗">
+            <input type="button" id='btn6' value="纵向百叶窗">
+        </div>
+        <div id="divRight">
+            <canvas id='canvas' width='100' height='130'></canvas>    
+        </div>
+    </article>
+</body>
+</html>

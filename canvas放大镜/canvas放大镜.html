@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas放大镜</title>
+    <style> 
+        canvas{
+            background:white;
+            position: absolute;
+        }
+        canvas#canvas1{
+            z-index: 1;
+        }
+        canvas#canvas2{
+            z-index: 2;
+            left: 0px;
+            top: 0px;
+            border: thin dashed black;
+            border-radius: 40px;
+            display: none;
+            position: relative;
+        }
+
+
+    </style>
+</head>
+<body onload="window_onload()">
+    <h1>对图像使用放大镜</h1>
+    <canvas id="canvas1" width="100px" height="130px" ></canvas>
+    <canvas id="canvas2" width="300px" height="240px" ></canvas>
+<script>
+function window_onload() {
+    var canvas1 = document.getElementById('canvas1')
+    ctx =  canvas1.getContext('2d')
+    var image = new Image()
+    image.src = './3.png'
+    image.onload = function(){
+        ctx.drawImage(image,0,0)
+    }
+    canvas1.onmousemove = canvas1_onmouse_move
+    canvas1.onmouseout = canvas1_onmouse_out
+
+    function canvas1_onmouse_move(ev){
+        var canvas1, canvas2,context,image;;
+        var x,y;
+        var drawWidth,drawHeight;
+        canvas1 = document.getElementById('canvas1')
+        canvas2 = document.getElementById('canvas2')
+        context = canvas2.getContext('2d')
+        canvas2.style.display = 'inline'
+        context.clearRect(0,0,canvas2.width,canvas2.height)
+        x =ev.pageX -canvas1.offsetLeft
+        y =ev.pageY - canvas1.offsetTop
+        canvas2.style.left = x+2+'px'
+        canvas2.style.top = x+2+'px'
+        if(x+40>canvas1.widht)
+            drawWidth = canvas1.widht - x
+        else 
+            drawWidth = 40 
+        if(y+40>canvas1.height)
+            drawHeight = canvas1.height-y
+        else 
+        drawHeight = 40
+        var image = new Image();
+        image.src = './3.png'
+        context.drawImage(image,x,y,drawWidth,drawHeight,0,0,drawHeight*6,drawHeight*6)
+    }
+    function canvas1_onmouse_out() {
+        var canvas2 =document.getElementById('canvas2')
+        canvas2.style.display = 'none'
+    }
+
+
+}
+</script>
+</body>
+</html>

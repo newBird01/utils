@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    200901  -- 201901
+   <script>
+    var html = ''
+
+    var playlistArray = {
+        p31115:{
+            video:{
+
+            }
+        }
+    }
+    function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    for(var i =2019; i<2020 ;i++) {
+        for(var j =1;j<13;j++) {
+            var str = String(i)+(j > 9 ? j :'0' + j);
+            var head = document.getElementsByTagName('head')[0];
+            var domScript = document.createElement('script');
+            domScript.src =`https://r.img.cctvpic.com/so/cctv/list/7/${str}/p31115_${str}.js?_=1546567446382`
+            head.appendChild(domScript);
+        }
+    }
+    setTimeout(function(){
+        for(var v in playlistArray.p31115.video) {
+            console.log('v :', v);
+            console.log(playlistArray.p31115.video[v])
+            playlistArray.p31115.video[v].forEach(ele => {
+                html+=decodeURIComponent(ele.title) + ' ' + ele.targetpage +'\r\n';
+            });
+        }
+        download(i-1+".txt",html);
+    },2000)
+    
+    
+   
+
+    
+   </script>
+</body>
+</html>
